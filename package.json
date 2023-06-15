@@ -1,0 +1,28 @@
+{
+  "name": "react-native-async-alert",
+  "version": "0.0.1.1",
+  "description": "It provides a global way to show alerts asynchronously",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "react-native-component",
+    "alert",
+    "react-native-async-alert",
+    "async-alert",
+    "alerts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rvenky125/react-native-async-alert.git"
+  },
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "react-native": ">=0.20.0"
+  },
+  "author": "Venkatesh Paithireddy <venkypaithireddy@gmail.com>",
+  "license": "MIT"
+}
