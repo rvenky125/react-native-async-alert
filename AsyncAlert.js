@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {LogBox, Text} from 'react-native';
 import {DefAlert} from './DefAlert';
 
-const useAlert = ({AlertComponent} = {AlertComponent: undefined}) => {
+const useAlert = ({renderAlertComponent} = {renderAlertComponent: undefined}) => {
   const [visible, setVisible] = useState(false);
   const [resolveFn, setResolveFn] = useState(null);
   const [title, setTitle] = useState('');
@@ -17,18 +17,18 @@ const useAlert = ({AlertComponent} = {AlertComponent: undefined}) => {
       onUserEvent.current = onEvent;
     }
 
-    if (!alertData && AlertComponent) {
+    if (!alertData && renderAlertComponent) {
       console.error('You need provide alert data while using a custom alert');
       return;
     }
 
-    if (!AlertComponent && alertData) {
+    if (!renderAlertComponent && alertData) {
       console.warn(
         'There is no need to provided alert data while not providing the custom alert in provider',
       );
     }
 
-    if (alertData && AlertComponent) {
+    if (alertData && renderAlertComponent) {
       setAlertData(alertData);
     } else {
       setTitle(title);
@@ -52,8 +52,8 @@ const useAlert = ({AlertComponent} = {AlertComponent: undefined}) => {
   };
 
   const AlertComp = () =>
-    AlertComponent ? (
-      AlertComponent({
+    renderAlertComponent ? (
+      renderAlertComponent({
         alertData,
         visible,
         onEvent: onUserEvent.current,

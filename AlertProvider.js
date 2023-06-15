@@ -5,9 +5,9 @@ const AlertContext = createContext();
 
 export const useShowAlert = () => useContext(AlertContext);
 
-const AlertProvider = ({children, Alert}) => {
+const AlertProvider = ({children, renderAlert}) => {
   const {showAlert, AlertComp} = useAlert({
-    AlertComponent: Alert
+    renderAlertComponent: renderAlert,
   });
 
   return (
