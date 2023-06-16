@@ -19,7 +19,7 @@
     "url": "git@github.com:rvenky125/react-native-async-alert.git"
   },
   "dependencies": {
-    "react-native-async-alert": "^0.0.2"
+    "react-native-async-alert": "^0.0.3"
   },
   "peerDependencies": {
     "react-native": ">=0.20.0"
