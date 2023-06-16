@@ -19,10 +19,14 @@
     "url": "git@github.com:rvenky125/react-native-async-alert.git"
   },
   "dependencies": {
+    "react-native-async-alert": "^0.0.2"
   },
   "peerDependencies": {
     "react-native": ">=0.20.0"
   },
   "author": "Venkatesh Paithireddy <venkypaithireddy@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }

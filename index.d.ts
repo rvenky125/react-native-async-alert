@@ -26,7 +26,9 @@ type UseAlertReturnType = {
 
 declare function useAlert(props: UseAlertProps): UseAlertReturnType;
 declare const AlertProvider: React.FC<{ renderAlert: UseAlertProps['renderAlertComponent'] }>;
-declare function useShowAlert(): () => Promise<boolean> | undefined;
+
+type ShowAlertFunction = (options: ShowAlertTypes) => Promise<boolean>;
+declare function useShowAlert(): ShowAlertFunction
 
 
 export { useAlert, AlertProvider, useShowAlert };
