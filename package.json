@@ -1,6 +1,6 @@
 {
   "name": "react-native-async-alert",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "It provides a global way to show alerts asynchronously",
   "main": "index.js",
   "scripts": {
@@ -25,8 +25,5 @@
     "react-native": ">=0.20.0"
   },
   "author": "Venkatesh Paithireddy <venkypaithireddy@gmail.com>",
-  "license": "MIT",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  }
+  "license": "MIT"
 }
