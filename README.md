@@ -1,12 +1,14 @@
 
 # react-native-async-alert
 
-This library provide you way to use your custom alert asynchronously.
+The "AsyncAlert" library is a powerful tool that allows developers to display alerts or modals asynchronously in their React applications. With a simple and intuitive API, it provides a seamless way to handle user interactions and gather responses from alert dialogs.
+
+The library includes the AlertProvider component, which serves as a context provider for managing the display of alerts. By wrapping your application with AlertProvider, you gain access to the useShowAlert hook, which provides a function for showing alerts.
+
+The showAlert function, provided by the library, enables you to show alerts dynamically by passing in various options such as the title, text, and additional alert data. It returns a promise that resolves to a boolean value indicating the user's response to the alert.
 
 
-
-
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+![Logo](https://github.com/rvenky125/react-native-async-alert/assets/58197145/e59b34e4-acb3-43da-844b-efc4dbc8def7)
 
 
 
@@ -59,11 +61,12 @@ function ExampleScreen() {
   return (
       ...
 
-      <Button title={'Show alert'} onPress={() => {
-        showAlert({
+      <Button title={'Show alert'} onPress={async () => {
+        const result = await showAlert({
           title: 'Title',
           text: 'text',
         });
+        console.log(result);
       }}/>
 
       ...
@@ -71,7 +74,7 @@ function ExampleScreen() {
 }
 ```
 
-**Creating you custom alert**
+**Creating your custom alert**
 
 You need to pass your custom alert to the renderAlert function. Make sure to use the props.
 ```javascript
@@ -121,17 +124,18 @@ function ExampleScreen() {
   return (
       ...
 
-      <Button title={'Show alert'} onPress={() => {
-        showAlert({
+      <Button title={'Show alert'} onPress={async () => {
+        const result = await showAlert({
           alertData: {
             text: "Text",
             message: "Message",
             // Give any data you want which will send to the alert
           },
           onEvent: (event) => {
-            console.log(event)
+            console.log(event);
           }
         });
+        console.log(result);
       }}/>
 
       ...
