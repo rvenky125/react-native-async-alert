@@ -1,6 +1,6 @@
 {
   "name": "react-native-async-alert",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "It provides a global way to show alerts asynchronously",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,6 @@
     "url": "git@github.com:rvenky125/react-native-async-alert.git"
   },
   "dependencies": {
-    "react-native-async-alert": "^0.0.3"
   },
   "peerDependencies": {
     "react-native": ">=0.20.0"

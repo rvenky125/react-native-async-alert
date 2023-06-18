@@ -69,7 +69,7 @@ const useAlert = ({ renderAlertComponent }: UseAlertProps): UseAlertReturnType =
     ) : (
       <DefAlert
         title={title}
-        renderBody={() => <Text>{text}</Text>}
+        renderBody={() => <Text style={{color: 'black'}}>{text}</Text>}
         onClose={onClose}
         onOk={handleButtonPress}
         isAlertVisible={visible}

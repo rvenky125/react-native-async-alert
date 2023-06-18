@@ -1,4 +1,3 @@
-
 # react-native-async-alert
 
 The "AsyncAlert" library is a powerful tool that allows developers to display alerts or modals asynchronously in their React applications. With a simple and intuitive API, it provides a seamless way to handle user interactions and gather responses from alert dialogs.
@@ -7,33 +6,34 @@ The library includes the AlertProvider component, which serves as a context prov
 
 The showAlert function, provided by the library, enables you to show alerts dynamically by passing in various options such as the title, text, and additional alert data. It returns a promise that resolves to a boolean value indicating the user's response to the alert.
 
-
 ![Logo](https://github.com/rvenky125/react-native-async-alert/assets/58197145/e59b34e4-acb3-43da-844b-efc4dbc8def7)
-
-
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
 ![AGPL License](https://img.shields.io/npm/dw/react-native-async-alert)
 
 ![Npm Version](https://img.shields.io/npm/v/react-native-async-alert)
+
 ## Installation
 
 Install react-native-async-alert with npm
+
 ```bash
   npm install react-native-async-alert
 ```
+
 with yarn
+
 ```bash
   yarn add react-native-async-alert
 ```
-
 
 ## Usage/Examples
 
 **Using default alert**
 
 Wrap your with <AlertProvider> in top level files like `index.js` or `App.js`
+
 ```javascript
 import {AlertProvider} from 'react-native-async-alert';
 import {useShowAlert} from 'react-native-async-alert';
@@ -47,7 +47,6 @@ function App() {
     </AlertProvider>
   );
 }
-
 ```
 
 ```javascript
@@ -77,6 +76,7 @@ function ExampleScreen() {
 **Creating your custom alert**
 
 You need to pass your custom alert to the renderAlert function. Make sure to use the props.
+
 ```javascript
 import {AlertProvider} from 'react-native-async-alert';
 
@@ -109,10 +109,10 @@ function App() {
     </AlertProvider>
   );
 }
-
 ```
 
 Then show the alert simply like below
+
 ```javascript
 import React from 'react';
 import Button from 'react-native';
@@ -142,14 +142,16 @@ function ExampleScreen() {
   );
 }
 ```
+
 ## Contributing
 
 Contributions are always welcome!
 
-See `contributing.md` for ways to get started.
+See `CONTRIBUTING.md` for ways to get started.
 
 Please adhere to this project's `code of conduct`.
 
-
 ## 🚀 About Me
-This is Venkatesh Paithireddy. I'm a self learned a full stack mobile developer 📱. I like mostly coding Android ❤️.
+
+Hi, this is Venkatesh Paithireddy👋. I'm a self learned full stack mobile📱 developer. I like coding Android mostly ❤️.
+You can contact me at [venkypaithireddy@gmail.com](mailto://venkypathireddy@gmail.com)
