@@ -53,7 +53,7 @@ export const DefAlert = ({
               onPress={onOk}>
               <Text
                 style={{
-                  color: 'white',
+                  color: 'black',
                   paddingHorizontal: Spacing.SpaceSemiSmall,
                 }}>
                 Ok
