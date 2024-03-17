@@ -5,18 +5,19 @@ type ShowAlertTypes = {
   text: string;
   alertData: object;
   onEvent: (event: any) => void;
-  hideCancel: boolean
+  hideCancel: boolean;
 };
 
-type RenderAlertComponentProps = {
-  alertData: object;
-  visible: boolean;
-  onEvent: (event: any) => void;
-  onClose: () => void;
+type renderAlertProps = {
+  alertData: object | null | undefined;
+  visible: boolean | null | undefined;
+  onEvent: ((event: any) => void) | null | undefined;
+  onClose: (() => void) | null | undefined;
 };
 
 type UseAlertProps = {
-  renderAlertComponent: (props: RenderAlertComponentProps) => React.ReactElement;
+  renderAlert?: (props: renderAlertProps) => React.ReactElement;
+  children: React.ReactElement;
 };
 
 type UseAlertReturnType = {
@@ -25,11 +26,15 @@ type UseAlertReturnType = {
 };
 
 declare function useAlert(props: UseAlertProps): UseAlertReturnType;
-declare const AlertProvider: React.FC<{ renderAlert: UseAlertProps['renderAlertComponent'] }>;
+declare const AlertProvider: React.FC<UseAlertProps>;
 
 type ShowAlertFunction = (options: ShowAlertTypes) => Promise<boolean>;
-declare function useShowAlert(): ShowAlertFunction
+declare function useShowAlert(): ShowAlertFunction;
 
-
-export { useAlert, AlertProvider, useShowAlert };
-export type { ShowAlertTypes, RenderAlertComponentProps, UseAlertProps, UseAlertReturnType };
+export {AlertProvider, useShowAlert};
+export type {
+  ShowAlertTypes,
+  renderAlertProps,
+  UseAlertProps,
+  UseAlertReturnType,
+};

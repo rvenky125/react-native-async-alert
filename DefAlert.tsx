@@ -15,7 +15,6 @@ export const DefAlert = ({
 }) => {
   return (
     <Modal
-      animated
       animationType={'fade'}
       visible={isAlertVisible}
       onRequestClose={() => onClose()}

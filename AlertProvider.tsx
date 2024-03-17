@@ -1,19 +1,20 @@
-import React, { createContext, useContext } from 'react';
-import { UseAlertProps, ShowAlertTypes } from './index';
+import React, {createContext, useContext} from 'react';
+import {UseAlertProps, ShowAlertTypes} from './index';
 import useAlert from './AsyncAlert';
 
 type ShowAlertFunction = (options: ShowAlertTypes) => Promise<boolean>;
 
 const AlertContext = createContext<ShowAlertFunction | undefined>(undefined);
 
-export const useShowAlert = (): ShowAlertFunction | undefined => useContext(AlertContext);
+export const useShowAlert = (): ShowAlertFunction | undefined =>
+  useContext(AlertContext);
 
-const AlertProvider: React.FC<{ renderAlert: UseAlertProps['renderAlertComponent'] }> = ({
-  children,
-  renderAlert,
-}) => {
-  const { showAlert, AlertComp } = useAlert({
-    renderAlertComponent: renderAlert,
+const AlertProvider: React.FC<{
+  renderAlert: UseAlertProps['renderAlert'];
+  children: React.ReactNode;
+}> = ({children, renderAlert}) => {
+  const {showAlert, AlertComp} = useAlert({
+    renderAlert: renderAlert,
   });
 
   return (
