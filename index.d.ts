@@ -1,11 +1,11 @@
 import React from 'react';
 
 type ShowAlertTypes = {
-  title: string;
-  text: string;
-  alertData: object;
-  onEvent: (event: any) => void;
-  hideCancel: boolean;
+  title?: string;
+  text?: string;
+  alertData?: object | null | undefined;
+  onEvent?: ((event: any) => void) | null | undefined;
+  hideCancel?: boolean | null | undefined;
 };
 
 type renderAlertProps = {

@@ -49,9 +49,9 @@ const useAlert = ({
     if (alertData && !!renderAlert) {
       setAlertData(alertData);
     } else {
-      setTitle(title);
-      setText(text);
-      setHideCancel(hideCancel);
+      setTitle(title ?? "");
+      setText(text ?? "");
+      setHideCancel(!!hideCancel);
     }
 
     setVisible(true);
