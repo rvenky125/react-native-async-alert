@@ -60,14 +60,14 @@ const useAlert = ({
     });
   };
 
-  const onClose = (): void => {
+  const onPressCancel = (): void => {
     setVisible(false);
     if (resolveFn) {
       resolveFn(false);
     }
   };
 
-  const handleButtonPress = (): void => {
+  const onPressOk = (): void => {
     setVisible(false);
     if (resolveFn) {
       resolveFn(true);
@@ -83,14 +83,15 @@ const useAlert = ({
         text,
         title,
         onEvent: onUserEvent.current,
-        onClose,
+        onPressCancel,
+        onPressOk
       })
     ) : (
       <DefAlert
         title={title}
         renderBody={() => <Text style={{color: 'black'}}>{text}</Text>}
-        onClose={onClose}
-        onOk={handleButtonPress}
+        onClose={onPressCancel}
+        onOk={onPressOk}
         isAlertVisible={!!visible}
         hideCancel={hideCancel}
       />

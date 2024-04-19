@@ -12,7 +12,8 @@ type RenderAlertProps = {
   alertData: object | null | undefined;
   visible: boolean | null | undefined;
   onEvent: ((event: any) => void) | null | undefined;
-  onClose: (() => void) | null | undefined;
+  onPressCancel: (() => void) | null | undefined;
+  onPressOk: (() => void) | null | undefined;
   title?: string;
   text?: string;
   hideCancel?: boolean | null | undefined
