@@ -8,15 +8,18 @@ type ShowAlertTypes = {
   hideCancel?: boolean | null | undefined;
 };
 
-type renderAlertProps = {
+type RenderAlertProps = {
   alertData: object | null | undefined;
   visible: boolean | null | undefined;
   onEvent: ((event: any) => void) | null | undefined;
   onClose: (() => void) | null | undefined;
+  title?: string;
+  text?: string;
+  hideCancel?: boolean | null | undefined
 };
 
 type UseAlertProps = {
-  renderAlert?: (props: renderAlertProps) => React.ReactElement;
+  renderAlert?: (props: RenderAlertProps) => React.ReactElement;
   children: React.ReactElement;
 };
 
@@ -34,7 +37,7 @@ declare function useShowAlert(): ShowAlertFunction;
 export {AlertProvider, useShowAlert};
 export type {
   ShowAlertTypes,
-  renderAlertProps,
+  RenderAlertProps,
   UseAlertProps,
   UseAlertReturnType,
 };

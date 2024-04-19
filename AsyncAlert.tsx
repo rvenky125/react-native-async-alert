@@ -79,6 +79,9 @@ const useAlert = ({
       renderAlert({
         alertData,
         visible,
+        hideCancel,
+        text,
+        title,
         onEvent: onUserEvent.current,
         onClose,
       })
