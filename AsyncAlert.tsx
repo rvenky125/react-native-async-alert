@@ -31,15 +31,6 @@ const useAlert = ({
       onUserEvent.current = onEvent;
     }
 
-    if (!alertData && !!renderAlert) {
-      console.error(
-        'You need to provide alert data while using a custom alert',
-      );
-      return Promise.reject(
-        new Error('Alert data is required for custom alert'),
-      );
-    }
-
     if (!renderAlert && alertData) {
       console.warn(
         'There is no need to provide alert data while not providing the custom alert in the provider',
