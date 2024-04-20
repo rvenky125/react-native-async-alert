@@ -39,11 +39,10 @@ const useAlert = ({
 
     if (alertData && !!renderAlert) {
       setAlertData(alertData);
-    } else {
-      setTitle(title ?? "");
-      setText(text ?? "");
-      setHideCancel(!!hideCancel);
     }
+    setTitle(title ?? '');
+    setText(text ?? '');
+    setHideCancel(!!hideCancel);
 
     setVisible(true);
     return new Promise<boolean>(resolve => {
@@ -75,7 +74,7 @@ const useAlert = ({
         title,
         onEvent: onUserEvent.current,
         onPressCancel,
-        onPressOk
+        onPressOk,
       })
     ) : (
       <DefAlert
