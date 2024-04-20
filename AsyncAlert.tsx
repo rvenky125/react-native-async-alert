@@ -50,15 +50,23 @@ const useAlert = ({
     });
   };
 
-  const onPressCancel = (): void => {
+  const resetStates = () => {
     setVisible(false);
+    setTitle('');
+    setText('');
+    setAlertData(null);
+    setHideCancel(false);
+  };
+
+  const onPressCancel = (): void => {
+    resetStates();
     if (resolveFn) {
       resolveFn(false);
     }
   };
 
   const onPressOk = (): void => {
-    setVisible(false);
+    resetStates();
     if (resolveFn) {
       resolveFn(true);
     }
