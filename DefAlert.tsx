@@ -1,102 +1,122 @@
 import React from 'react';
-import {Modal, View, TouchableOpacity, Text, Dimensions} from 'react-native';
-import {Spacing} from './Spacing';
+import {Modal, Pressable, StyleSheet, View, Dimensions, Button, Text} from 'react-native';
 
 export const SCREEN_WIDTH = Dimensions.get('window').width;
 export const SCREEN_HEIGHT = Dimensions.get('window').height;
+const scale =  SCREEN_WIDTH / 375;
 
-export const DefAlert = ({
-  isAlertVisible = false,
-  onClose,
+export const isTablet = SCREEN_HEIGHT / SCREEN_WIDTH < 1.6;
+
+export function wp(percentage) {
+  const value = (percentage * SCREEN_WIDTH) / 100;
+  return Math.round(value);
+}
+
+export function moderateScale(size) {
+  const newSize = size * scale;
+  if (isTablet) {
+    return Math.round(newSize) - wp(1);
+  } else {
+    return Math.round(newSize);
+  }
+}
+
+const grayScale = "grey"
+
+const DefAlertDialog = ({
+  visible,
   title,
-  renderBody,
+  text,
+  confirmText,
+  dismissText,
+  onConfirm,
+  onDismiss,
   hideCancel,
-  onOk,
 }) => {
-  return (
-    <Modal
-      animationType={'fade'}
-      visible={isAlertVisible}
-      onRequestClose={() => onClose()}
-      transparent
-      onDismiss={() => onClose()}>
-      <View
-        style={{
-          width: '100%',
-          height: '100%',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: 'rgba(0, 0, 0, 0.3)',
-        }}>
-        <View
-          style={{
-            backgroundColor: 'white',
-            padding: Spacing.SpaceMedium,
-            width: SCREEN_WIDTH / 1.2,
-            elevation: Spacing.SpaceMedium,
-            borderRadius: Spacing.SpaceLarge,
-            paddingEnd: Spacing.SpaceMedium,
-          }}>
-          <Text style={[{color: 'black', fontSize: 20}]}>{title}</Text>
-          {renderBody ? renderBody() : null}
 
-          {hideCancel ? (
-            <TouchableOpacity
+  return (
+    <Modal transparent visible={visible}>
+      <View style={localStyles.parentContainer}>
+        <Pressable
+          onPress={onDismiss}
+          style={{
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+          }}
+        />
+        <View
+          style={[
+            localStyles.container,
+            {backgroundColor: grayScale},
+          ]}>
+          <Info
+            width={moderateScale(80)}
+            height={moderateScale(80)}
+            style={{marginBottom: moderateScale(15)}}
+          />
+
+          <CText type={'B22'} align={'center'}>
+            {title}
+          </CText>
+          {text ? (
+            typeof text == 'string' ? (
+              <CText
+                type={'R14'}
+                style={{marginVertical: moderateScale(10)}}
+                color={colors.grayScale5}>
+                {text}
+              </CText>
+            ) : (
+              text
+            )
+          ) : null}
+
+          <CButton
+            containerStyle={{
+              width: '100%',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginTop: moderateScale(10),
+              borderRadius: moderateScale(10),
+            }}
+            title={confirmText ?? 'Confirm'}
+            onPress={onConfirm}
+          />
+          {!hideCancel ? (
+            <DefOutlinedBtn
               style={{
-                paddingHorizontal: Spacing.SpaceLarge * 1.5,
-                paddingVertical: Spacing.SpaceSemiSmall,
-                borderRadius: Spacing.SpaceSemiSmall,
-                marginHorizontal: Spacing.SpaceSmall,
-                backgroundColor: 'white',
-                alignSelf: 'center',
+                width: '100%',
+                padding: moderateScale(9),
+                borderRadius: moderateScale(50),
+                marginTop: moderateScale(8),
+                borderRadius: moderateScale(10),
               }}
-              onPress={onOk}>
-              <Text
-                style={{
-                  color: 'black',
-                  paddingHorizontal: Spacing.SpaceSemiSmall,
-                }}>
-                Ok
-              </Text>
-            </TouchableOpacity>
-          ) : (
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginTop: Spacing.SpaceSmall,
-                alignSelf: 'flex-end',
-              }}>
-              <TouchableOpacity onPress={onClose}>
-                <Text
-                  style={{
-                    color: 'black',
-                    fontSize: Spacing.SpaceMedium,
-                  }}>
-                  Cancel
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  paddingHorizontal: Spacing.SpaceSmall,
-                  paddingVertical: Spacing.SpaceVerySmall,
-                  borderRadius: Spacing.SpaceSemiSmall,
-                  marginStart: Spacing.SpaceMedium,
-                }}
-                onPress={onOk}>
-                <Text
-                  style={{
-                    color: 'black',
-                    paddingHorizontal: Spacing.SpaceSemiSmall,
-                    fontSize: Spacing.SpaceMedium,
-                  }}>
-                  Ok
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
+              title={dismissText ?? 'Cancel'}
+              onPress={onDismiss}
+            />
+          ) : null}
         </View>
       </View>
     </Modal>
   );
 };
+
+export default DefAlertDialog;
+
+const localStyles = StyleSheet.create({
+  container: {
+    width: SCREEN_WIDTH * 0.8,
+    position: 'absolute',
+    borderRadius: moderateScale(10),
+    alignItems: 'center',
+    paddingHorizontal: moderateScale(22),
+    paddingVertical: moderateScale(28),
+  },
+  parentContainer: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

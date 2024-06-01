@@ -1,10 +1,10 @@
 # react-native-async-alert
 
-The "AsyncAlert" library is a powerful tool that allows developers to display alerts or modals asynchronously in their React applications. With a simple and intuitive API, it provides a seamless way to handle user interactions and gather responses from alert dialogs.
+The "AsyncAlert" library is a powerful tool that allows developers to display alerts or modals asynchronously in their React Native applications. With a simple and intuitive API, it provides a seamless way to handle user interactions and gather responses from alert dialogs.
 
-The library includes the AlertProvider component, which serves as a context provider for managing the display of alerts. By wrapping your application with AlertProvider, you gain access to the useShowAlert hook, which provides a function for showing alerts.
+The library includes the `AlertProvider` component, which serves as a context provider for managing the display of alerts. By wrapping your application with `AlertProvider`, you gain access to the `useShowAlert` hook, which provides a function for showing alerts.
 
-The showAlert function, provided by the library, enables you to show alerts dynamically by passing in various options such as the title, text, and additional alert data. It returns a promise that resolves to a boolean value indicating the user's response to the alert.
+The `showAlert` function, provided by the library, enables you to show alerts dynamically by passing in various options such as the title, text, and additional alert data. It returns a promise that resolves to a boolean value indicating the user's response to the alert.
 
 ![Logo](https://github.com/rvenky125/react-native-async-alert/assets/58197145/e59b34e4-acb3-43da-844b-efc4dbc8def7)
 
@@ -32,7 +32,7 @@ with yarn
 
 **Using default alert**
 
-Wrap your with <AlertProvider> in top level files like `index.js` or `App.js`
+Wrap your application with `<AlertProvider>` in top-level files like `index.js` or `App.js`.
 
 ```javascript
 import {AlertProvider} from 'react-native-async-alert';
@@ -63,7 +63,7 @@ function ExampleScreen() {
       <Button title={'Show alert'} onPress={async () => {
         const result = await showAlert({
           title: 'Title',
-          text: 'text',
+          text: 'text' // (or) <Text>Text component</Text>,
         });
         console.log(result);
       }}/>
@@ -75,28 +75,22 @@ function ExampleScreen() {
 
 **Creating your custom alert**
 
-You need to pass your custom alert to the renderAlert function. Make sure to use the props.
+You need to pass your custom alert to the `renderAlert` function. Make sure to use the props.
 
 ```javascript
 import {AlertProvider} from 'react-native-async-alert';
 
-const renderAlert = ({alertData, visible, onEvent, onClose}) => {
+const renderAlert = ({alertData, visible, hideCancel, text, title, onEvent, onPressCancel, onPressOk}) => {
   return (
-    <Modal visible={visible} transparent>
-      <View style={{backgroundColor: 'white'}}>
-        <Text style={{color: 'black'}}>{alertData?.text}</Text>
-        <Text style={{color: 'black'}}>{alertData?.message}</Text>
-
-        <Button title="Ok" onPress={() => onEvent('On Ok')} />
-
-        <Button
-          title="close"
-          onPress={() => {
-            onClose();
-          }}
-        />
-      </View>
-    </Modal>
+    <SomeCustomAlert
+      title={title}
+      text={text}
+      onClose={onPressCancel}
+      onOk={onPressOk}
+      isAlertVisible={!!visible}
+      hideCancel={hideCancel}
+      footerContent={alertData?.footerContent} // We can use alert data for any type of data.
+    />
   );
 };
 
@@ -125,17 +119,14 @@ function ExampleScreen() {
       ...
 
       <Button title={'Show alert'} onPress={async () => {
-        const result = await showAlert({
+        const isClickedOk = await showAlert({
+          title: "Title",
+          text: "Text",
           alertData: {
-            text: "Text",
-            message: "Message",
-            // Give any data you want which will send to the alert
-          },
-          onEvent: (event) => {
-            console.log(event);
+            footerContent: <Text>Some Content</Text>
           }
         });
-        console.log(result);
+        console.log(isClickedOk);
       }}/>
 
       ...
@@ -153,5 +144,5 @@ Please adhere to this project's `code of conduct`.
 
 ## 🚀 About Me
 
-Hi, this is Venkatesh Paithireddy👋. I'm a self learned full stack mobile📱 developer. I like coding Android mostly ❤️.
+Hi, this is Venkatesh Paithireddy👋. I'm a self-learned full-stack mobile📱 developer. I like coding Android mostly ❤️.
 You can contact me at [venkypaithireddy@gmail.com](mailto://venkypathireddy@gmail.com)
