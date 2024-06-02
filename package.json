@@ -1,6 +1,6 @@
 {
   "name": "react-native-async-alert",
-  "version": "0.0.68",
+  "version": "0.1.0",
   "description": "It provides a global way to show alerts asynchronously",
   "main": "index.js",
   "scripts": {
